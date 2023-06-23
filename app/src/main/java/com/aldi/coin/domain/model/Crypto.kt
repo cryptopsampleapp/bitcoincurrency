@@ -9,6 +9,7 @@ data class Crypto(
     val supply: String,
     val price: String,
     val changePerc: String,
+    val marketCap : String,
     val volume: String,
 )
 
@@ -20,5 +21,6 @@ fun CryptoDTO.toCrypto() =
         supply = supply,
         price = priceUsd,
         changePerc = changePercent24Hr,
+        marketCap = marketCapUsd,
         volume = volumeUsd24Hr
     )
