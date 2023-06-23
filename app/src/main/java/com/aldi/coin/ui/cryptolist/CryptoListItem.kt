@@ -1,4 +1,4 @@
-package com.aldi.coin.ui.theme
+package com.aldi.coin.ui.cryptolist
 
 import Poppins
 import androidx.compose.foundation.Image
@@ -26,8 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.aldi.coin.R
-import com.aldi.coin.data.service.repository.MockData
-import com.aldi.coin.domain.model.Crypto
+import com.aldi.coin.data.model.Crypto
+import com.aldi.coin.data.repository.MockRepo
+import com.aldi.coin.ui.theme.AldiCoinTheme
+import kotlinx.coroutines.runBlocking
 
 @Composable
 fun CryptoListItem(crypto: Crypto, onNavigateToDetails: () -> Unit) {
@@ -102,5 +104,8 @@ fun CryptoListItem(crypto: Crypto, onNavigateToDetails: () -> Unit) {
 @Preview
 @Composable
 private fun PreviewCryptoListItem() {
-    CryptoListItem(crypto = MockData.cryptoList.first()) {}
+    AldiCoinTheme {
+        val crypto = runBlocking { MockRepo().getCryptoById("bitcoin")}
+        CryptoListItem(crypto = crypto) {}
+    }
 }

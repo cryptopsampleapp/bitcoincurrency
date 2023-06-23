@@ -2,6 +2,7 @@ package com.aldi.coin.data.service.response
 
 data class CryptoDTO(
     val changePercent24Hr: String,
+    val explorer: String,
     val id: String,
     val marketCapUsd: String,
     val maxSupply: String,
@@ -12,4 +13,4 @@ data class CryptoDTO(
     val symbol: String,
     val volumeUsd24Hr: String,
     val vwap24Hr: String
-)
+) : BaseResponse<Any>()
