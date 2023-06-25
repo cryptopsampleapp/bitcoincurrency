@@ -1,25 +1,31 @@
 package com.aldi.coin.domain.interactor
 
+import com.aldi.coin.data.enum.MagnitudeType
+import com.aldi.coin.data.enum.getMagnitudeType
+import java.math.BigInteger
 import java.math.RoundingMode
+import java.security.InvalidParameterException
 
 object AbbreviateDecimalUseCase {
-
-    enum class DecimalAbbreviationType(val symbol: Char) {
-        THOUSAND('K'),
-        MILLION('M'),
-        BILLION('B')
-    }
 
     operator fun invoke(value: String): String {
         val bigDecimal = value.toBigDecimal()
         val bigInteger = bigDecimal.toBigInteger()
-        val integerLength = bigInteger.toString().length
-        return  when {
-            integerLength < 4 -> bigDecimal.setScale(2, RoundingMode.HALF_DOWN).toString()
-            integerLength in 4..6 -> bigInteger.toBigDecimal(3).setScale(2, RoundingMode.HALF_DOWN).toString() + DecimalAbbreviationType.THOUSAND.symbol
-            integerLength in 7..9 -> bigInteger.toBigDecimal(6).setScale(2, RoundingMode.HALF_DOWN).toString() + DecimalAbbreviationType.MILLION.symbol
-            else -> bigInteger.toBigDecimal(9).setScale(2, RoundingMode.HALF_DOWN).toString() + DecimalAbbreviationType.BILLION.symbol
+        val integerMagnitude = getMagnitudeType(bigInteger.toString())
+        return if (integerMagnitude == MagnitudeType.NONE) {
+            bigDecimal.setScale(2, RoundingMode.HALF_DOWN).toString()
+        } else {
+            formByMagnitudeType(bigInteger, integerMagnitude)
         }
+    }
 
+    private fun formByMagnitudeType(bigInteger: BigInteger, type: MagnitudeType): String {
+        val abbreviatedDecimal = when (type) {
+            MagnitudeType.THOUSAND -> bigInteger.toBigDecimal(3)
+            MagnitudeType.MILLION -> bigInteger.toBigDecimal(6)
+            MagnitudeType.BILLION -> bigInteger.toBigDecimal(9)
+            else -> throw InvalidParameterException()
+        }
+        return abbreviatedDecimal.setScale(2, RoundingMode.HALF_DOWN).toString()
     }
 }

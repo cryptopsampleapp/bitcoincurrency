@@ -1,4 +1,6 @@
-package com.aldi.coin.data.service.response
+package com.aldi.coin.data.model
+
+import com.aldi.coin.data.service.response.BaseResponse
 
 data class CryptoDTO(
     val changePercent24Hr: String,

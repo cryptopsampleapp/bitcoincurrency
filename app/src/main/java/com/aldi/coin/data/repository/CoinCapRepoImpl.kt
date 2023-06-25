@@ -1,8 +1,7 @@
 package com.aldi.coin.data.repository
 
-import com.aldi.coin.data.model.toCrypto
 import com.aldi.coin.data.service.CoinCapApi
-import com.aldi.coin.data.service.request.CryptoListRequest
+import com.aldi.coin.toCrypto
 import javax.inject.Inject
 
 class CoinCapRepoImpl @Inject constructor(private val api: CoinCapApi) : CoinCapRepository {

@@ -1,10 +1,8 @@
 package com.aldi.coin.data.service
 
-import com.aldi.coin.data.service.request.CryptoListRequest
-import com.aldi.coin.data.service.response.CryptoDTO
+import com.aldi.coin.data.model.CryptoDTO
 import com.aldi.coin.data.service.response.BaseResponse
 import retrofit2.Retrofit
-import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

@@ -1,14 +1,13 @@
 package com.aldi.coin.ui.cryptodetail
 
-import androidx.annotation.DrawableRes
 import androidx.lifecycle.SavedStateHandle
 import com.aldi.coin.Constants.CRYPTO_DETAIL_ARG
-import com.aldi.coin.data.model.Crypto
+import com.aldi.coin.data.model.DecoratedCrypto
 import com.aldi.coin.data.repository.ApiResponse
 import com.aldi.coin.data.repository.CoinCapRepoImpl
 import com.aldi.coin.data.repository.safeApiCall
 import com.aldi.coin.di.DefaultDispatcher
-import com.aldi.coin.domain.interactor.MapIconUseCase
+import com.aldi.coin.toDecoratedCrypto
 import com.aldi.coin.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -25,7 +24,7 @@ sealed class CryptoDetailEvent {
 
 sealed class CryptoDetailUiState {
     object InProgress : CryptoDetailUiState()
-    data class Success(val crypto: Crypto) : CryptoDetailUiState()
+    data class Success(val crypto: DecoratedCrypto) : CryptoDetailUiState()
     data class Error(val message: String) : CryptoDetailUiState()
 }
 
@@ -59,9 +58,8 @@ class CryptoDetailViewModel @Inject constructor(
             when (state) {
                 ApiResponse.Loading -> _uiState.value = CryptoDetailUiState.InProgress
                 is ApiResponse.Success -> _uiState.value =
-                    state.data?.let { CryptoDetailUiState.Success(it) }
+                    state.data?.let { CryptoDetailUiState.Success(it.toDecoratedCrypto()) }
                         ?: CryptoDetailUiState.Error(NullPointerException::class.java.simpleName)
-
                 is ApiResponse.Error -> _uiState.value =
                     CryptoDetailUiState.Error(state.localizedMessage)
             }

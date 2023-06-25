@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Aldi Coin</string>
+    <string name="crypto_price">Price</string>
+    <string name="crypto_change_perc">Change (24hr)</string>
+    <string name="crypto_market_cap">Market Cap</string>
+    <string name="crypto_volume">Volume (24hr)</string>
+    <string name="crypto_supply">Supply</string>
+    <string name="retry">Retry</string>
 </resources>

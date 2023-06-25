@@ -1,14 +1,13 @@
 package com.aldi.coin.ui.cryptolist
 
 import android.util.Log
-import androidx.annotation.DrawableRes
 import com.aldi.coin.Constants.ONE_MINUTE
-import com.aldi.coin.data.model.Crypto
+import com.aldi.coin.data.model.DecoratedCrypto
 import com.aldi.coin.data.repository.ApiResponse
 import com.aldi.coin.data.repository.CoinCapRepoImpl
 import com.aldi.coin.data.repository.safeApiCall
 import com.aldi.coin.di.DefaultDispatcher
-import com.aldi.coin.domain.interactor.MapIconUseCase
+import com.aldi.coin.toDecoratedCrypto
 import com.aldi.coin.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,7 +25,7 @@ sealed class CryptoListEvent {
 
 sealed class CryptoListUiState {
     object InProgress : CryptoListUiState()
-    data class Success(val cryptoList: List<Crypto>, @DrawableRes val iconList: List<Int>) :
+    data class Success(val cryptoList: List<DecoratedCrypto>) :
         CryptoListUiState()
 
     data class Error(val message: String) : CryptoListUiState()
@@ -65,10 +64,9 @@ class CryptoListViewModel @Inject constructor(
             when (state) {
                 ApiResponse.Loading -> _uiState.value = CryptoListUiState.InProgress
                 is ApiResponse.Success -> _uiState.value =
-                    state.data?.let {
+                    state.data?.let { cryptoList ->
                         CryptoListUiState.Success(
-                            it,
-                            it.map { crypto: Crypto -> MapIconUseCase(crypto) })
+                            cryptoList.map { crypto -> crypto.toDecoratedCrypto() })
                     }
                         ?: CryptoListUiState.Error(NullPointerException::class.java.simpleName)
 

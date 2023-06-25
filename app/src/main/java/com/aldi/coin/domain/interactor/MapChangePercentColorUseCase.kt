@@ -1,17 +1,11 @@
 package com.aldi.coin.domain.interactor
 
-import androidx.annotation.ColorRes
 import androidx.compose.ui.graphics.Color
+import com.aldi.coin.data.enum.ChangePercentType
 import com.aldi.coin.data.model.Crypto
-import com.aldi.coin.ui.theme.CustomGreen
-import com.aldi.coin.ui.theme.CustomRed
 
-object MapChangePercentTypeColorUseCase {
 
-    enum class ChangePercentType(@ColorRes val color: Color) {
-        INCREASE(CustomGreen), DECREASE(CustomRed)
-    }
-
+object MapChangePercentColorUseCase {
     operator fun invoke(crypto: Crypto): Color {
         return if (crypto.changePerc.contains("-")) {
             ChangePercentType.DECREASE.color

@@ -16,7 +16,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.sql.Time
 import java.util.concurrent.TimeUnit.SECONDS
 import javax.inject.Singleton
 
@@ -60,7 +59,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHttpLogger(): HttpLoggingInterceptor {
-        val logging = HttpLoggingInterceptor(/*ApiLogger()*/)
+        val logging = HttpLoggingInterceptor(ApiLogger())
         if (BuildConfig.DEBUG) {
             logging.level = Level.BODY
         }

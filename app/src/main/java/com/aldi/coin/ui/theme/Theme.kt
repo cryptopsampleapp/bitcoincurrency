@@ -18,7 +18,7 @@ private val LightColorPalette = lightColors(
     primary = CustomBlue.copy(.3F),
     primaryVariant = Purple700,
     secondary = Teal200,
-    background = Color.White,
+    background = Color.White.copy(0.4F),
     surface = CustomBlue.copy(.2F)
     /*
     surface = Color.White,

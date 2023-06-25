@@ -8,5 +8,5 @@ data class Crypto(
     val price: String,
     val changePerc: String,
     val marketCap : String,
-    val volume: String,
+    val volume: String
 )
