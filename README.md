@@ -2,10 +2,7 @@
 
 ## Table of Contents
 * [Task Description](#tasks-description)
-* [Detailed information](#detailed_information)
 * [Setup](#setup)
-* [Room for Improvement](#room-for-improvement)
-* [Contact](#contact)
 
 ## Task Description
 User Story
