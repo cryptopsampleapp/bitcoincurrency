@@ -1,6 +1,6 @@
 package com.aldi.coin.ui.cryptolist
 
-import Poppins
+import com.aldi.coin.ui.theme.Poppins
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

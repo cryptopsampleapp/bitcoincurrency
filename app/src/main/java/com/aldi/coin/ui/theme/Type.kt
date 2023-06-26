@@ -1,3 +1,5 @@
+package com.aldi.coin.ui.theme
+
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -28,7 +30,7 @@ private val googleFontProvider: GoogleFont.Provider by lazy {
 }
 
 val Poppins = getGoogleFontFamily(
-    name = "Poppins",
+    name = "com.aldi.coin.ui.theme.getPoppins",
     weights = listOf(
         FontWeight.Normal,
         FontWeight.Bold,

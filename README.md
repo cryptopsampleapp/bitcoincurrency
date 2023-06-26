@@ -63,16 +63,7 @@ The font can be the default font from android.
 
 
 ## Setup
-build app from command line:
+build and install app from command line:
 
-	path/to/AldiCoin> gradlew tasks
+	path/to/AldiCoin> gradlew installrelease
 
-to run on emulator: 
-
-	path/to/AldiCoin> emulator -list-avds //pick the desired device
-
-	adb install path/to/AldiCoin/apk_release.apk
-
-to run on physical device: 
-
-	adb install path/to/mondrian_candidate_test/app_release.apk
