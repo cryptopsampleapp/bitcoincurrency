@@ -22,13 +22,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.aldi.coin.data.model.DecoratedCrypto
 import com.aldi.coin.data.repository.MockRepo
 import com.aldi.coin.toDecoratedCrypto
 import com.aldi.coin.ui.theme.AldiCoinTheme
+import com.aldi.coin.ui.theme.font_size1
+import com.aldi.coin.ui.theme.font_size16
+import com.aldi.coin.ui.theme.font_size20
+import com.aldi.coin.ui.theme.perc40
+import com.aldi.coin.ui.theme.size16
+import com.aldi.coin.ui.theme.size24
+import com.aldi.coin.ui.theme.size56
+import com.aldi.coin.ui.theme.size88
 import kotlinx.coroutines.runBlocking
 
 @Composable
@@ -36,50 +42,50 @@ fun CryptoListItem(crypto: DecoratedCrypto, onNavigateToDetails: () -> Unit) {
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 24.dp, vertical = 16.dp)
-            .height(88.dp)
+            .padding(horizontal = size24, vertical = size16)
+            .height(size88)
             .clickable { onNavigateToDetails() }
-            .background(Color.White.copy(.4f), RoundedCornerShape(corner = CornerSize(16.dp)))
+            .background(Color.White.copy(perc40), RoundedCornerShape(corner = CornerSize(size16)))
     ) {
         val (logo, name, symbol, price, changePerc) = createRefs()
         Image(painter = painterResource(id = crypto.icon),
             contentDescription = null,
             contentScale = ContentScale.Fit,
             modifier = Modifier
-                .height(56.dp)
-                .width(56.dp)
+                .height(size56)
+                .width(size56)
                 .constrainAs(logo) {
-                    start.linkTo(parent.start, margin = 16.dp)
+                    start.linkTo(parent.start, margin = size16)
                     centerVerticallyTo(parent)
                 })
 
         Text(text = crypto.name, fontFamily = Poppins, style = TextStyle(
             platformStyle = PlatformTextStyle(
                 includeFontPadding = false,
-            ), fontSize = 20.sp, fontWeight = FontWeight.Bold
+            ), fontSize = font_size20, fontWeight = FontWeight.Bold
         ), modifier = Modifier.constrainAs(name) {
             top.linkTo(logo.top)
-            start.linkTo(logo.end, margin = 16.dp)
+            start.linkTo(logo.end, margin = size16)
         })
 
         Text(text = crypto.symbol, style = TextStyle(
             platformStyle = PlatformTextStyle(
                 includeFontPadding = false,
-            ), fontSize = 16.sp
+            ), fontSize = font_size16
         ), modifier = Modifier.constrainAs(symbol) {
-            start.linkTo(logo.end, margin = 16.dp)
+            start.linkTo(logo.end, margin = size16)
             bottom.linkTo(logo.bottom)
         })
 
         Text(
             text = crypto.price,
-            fontSize = 16.sp,
+            fontSize = font_size16,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.End,
             modifier = Modifier.constrainAs(price) {
                 top.linkTo(logo.top)
-                end.linkTo(parent.end, margin = 16.dp)
-            }, letterSpacing = 1.sp
+                end.linkTo(parent.end, margin = size16)
+            }, letterSpacing = font_size1
         )
 
         Text(
@@ -87,12 +93,12 @@ fun CryptoListItem(crypto: DecoratedCrypto, onNavigateToDetails: () -> Unit) {
             style = typography.caption,
             textAlign = TextAlign.End,
             color = crypto.changePercentType,
-            fontSize = 16.sp,
+            fontSize = font_size16,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.constrainAs(changePerc) {
                 bottom.linkTo(logo.bottom)
-                end.linkTo(parent.end, margin = 16.dp)
-            }, letterSpacing = 1.sp
+                end.linkTo(parent.end, margin = size16)
+            }, letterSpacing = font_size1
         )
     }
 }

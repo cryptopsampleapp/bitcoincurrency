@@ -29,8 +29,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aldi.coin.R
 import com.aldi.coin.data.model.DecoratedCrypto
@@ -40,6 +38,16 @@ import com.aldi.coin.ui.components.ErrorView
 import com.aldi.coin.ui.theme.AldiCoinTheme
 import com.aldi.coin.ui.theme.CustomBlue
 import com.aldi.coin.ui.theme.CustomGray
+import com.aldi.coin.ui.theme.font_size1
+import com.aldi.coin.ui.theme.font_size16
+import com.aldi.coin.ui.theme.perc100
+import com.aldi.coin.ui.theme.perc20
+import com.aldi.coin.ui.theme.perc40
+import com.aldi.coin.ui.theme.size1
+import com.aldi.coin.ui.theme.size12
+import com.aldi.coin.ui.theme.size16
+import com.aldi.coin.ui.theme.size20
+import com.aldi.coin.ui.theme.size24
 import kotlinx.coroutines.runBlocking
 
 
@@ -60,7 +68,7 @@ fun CryptoDetailScreen(
             Modifier
                 .pullRefresh(pullRefreshState)
                 .verticalScroll(rememberScrollState())
-                .background(CustomBlue.copy(.2f))
+                .background(CustomBlue.copy(perc20))
                 .height(pageSize)
                 .fillMaxSize()
         ) {
@@ -91,113 +99,113 @@ fun CryptoDetailScreen(
 fun CryptoDetailView(crypto: DecoratedCrypto) {
     Column(
         modifier = Modifier
-            .padding(horizontal = 24.dp, vertical = 16.dp)
+            .padding(horizontal = size24, vertical = size16)
             .fillMaxSize()
-            .background(Color.White.copy(0.4F), RoundedCornerShape(corner = CornerSize(16.dp)))
+            .background(Color.White.copy(perc40), RoundedCornerShape(corner = CornerSize(size16)))
     ) {
-        Row(Modifier.padding(24.dp, 24.dp, 24.dp, 12.dp)) {
+        Row(Modifier.padding(size24, size24, size24, size12)) {
             Text(
                 textAlign = TextAlign.Start,
                 text = stringResource(id = R.string.crypto_price),
-                fontSize = 16.sp,
-                letterSpacing = 1.sp,
+                fontSize = font_size16,
+                letterSpacing = font_size1,
                 color = CustomGray,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(perc100)
             )
             Text(
                 textAlign = TextAlign.End,
                 text = crypto.price,
-                fontSize = 16.sp,
+                fontSize = font_size16,
                 fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp,
+                letterSpacing = font_size1,
                 color = CustomGray,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(perc100)
             )
         }
 
-        Row(Modifier.padding(24.dp, 12.dp)) {
+        Row(Modifier.padding(size24, size12)) {
             Text(
                 textAlign = TextAlign.Start,
                 text = stringResource(id = R.string.crypto_change_perc),
-                fontSize = 16.sp,
-                letterSpacing = 1.sp,
+                fontSize = font_size16,
+                letterSpacing = font_size1,
                 color = CustomGray,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(perc100)
             )
             Text(
                 textAlign = TextAlign.End,
                 text = crypto.changePerc,
                 color = crypto.changePercentType,
-                fontSize = 16.sp,
+                fontSize = font_size16,
                 fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp,
-                modifier = Modifier.weight(1f)
+                letterSpacing = font_size1,
+                modifier = Modifier.weight(perc100)
             )
         }
 
         Divider(
-            color = CustomBlue.copy(0.2F),
-            thickness = 1.dp,
-            modifier = Modifier.padding(24.dp, 20.dp)
+            color = CustomBlue.copy(perc20),
+            thickness = size1,
+            modifier = Modifier.padding(size24, size20)
         )
 
-        Row(Modifier.padding(24.dp, 12.dp)) {
+        Row(Modifier.padding(size24, size12)) {
             Text(
                 textAlign = TextAlign.Start,
                 text = stringResource(id = R.string.crypto_market_cap),
-                fontSize = 16.sp,
-                letterSpacing = 1.sp,
+                fontSize = font_size16,
+                letterSpacing = font_size1,
                 color = CustomGray,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(perc100)
             )
             Text(
                 textAlign = TextAlign.End,
                 text = crypto.marketCap,
-                fontSize = 16.sp,
+                fontSize = font_size16,
                 fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp,
+                letterSpacing = font_size1,
                 color = CustomGray,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(perc100)
             )
         }
 
-        Row(Modifier.padding(24.dp, 12.dp)) {
+        Row(Modifier.padding(size24, size12)) {
             Text(
                 textAlign = TextAlign.Start,
                 text = stringResource(id = R.string.crypto_volume),
-                fontSize = 16.sp,
-                letterSpacing = 1.sp,
+                fontSize = font_size16,
+                letterSpacing = font_size1,
                 color = CustomGray,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(perc100)
             )
             Text(
                 textAlign = TextAlign.End,
                 text = crypto.volume,
-                fontSize = 16.sp,
+                fontSize = font_size16,
                 fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp,
+                letterSpacing = font_size1,
                 color = CustomGray,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(perc100)
             )
         }
 
-        Row(Modifier.padding(24.dp, 12.dp)) {
+        Row(Modifier.padding(size24, size12)) {
             Text(
                 textAlign = TextAlign.Start,
                 text = stringResource(id = R.string.crypto_supply),
-                fontSize = 16.sp,
-                letterSpacing = 1.sp,
+                fontSize = font_size16,
+                letterSpacing = font_size1,
                 color = CustomGray,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(perc100)
             )
             Text(
                 textAlign = TextAlign.End,
                 text = crypto.supply,
-                fontSize = 16.sp,
+                fontSize = font_size16,
                 fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp,
+                letterSpacing = font_size1,
                 color = CustomGray,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(perc100)
             )
         }
     }

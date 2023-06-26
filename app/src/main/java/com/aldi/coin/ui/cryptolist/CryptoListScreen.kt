@@ -13,12 +13,14 @@ import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.aldi.coin.Constants.TOP_CRYPTO_LIST_SIZE
 import com.aldi.coin.data.model.DecoratedCrypto
 import com.aldi.coin.data.repository.MockRepo
 import com.aldi.coin.toDecoratedCrypto
 import com.aldi.coin.ui.components.ErrorView
 import com.aldi.coin.ui.theme.AldiCoinTheme
 import com.aldi.coin.ui.theme.CustomBlue
+import com.aldi.coin.ui.theme.perc20
 import kotlinx.coroutines.runBlocking
 
 @Composable
@@ -30,7 +32,7 @@ fun CryptoListScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(CustomBlue.copy(.2f))
+            .background(CustomBlue.copy(perc20))
     ) {
         when (val screenState = state) {
             CryptoListUiState.InProgress -> CircularProgressIndicator(
@@ -68,7 +70,8 @@ private fun CryptoListView(
 @Composable
 fun CryptoListScreenPreview() {
     AldiCoinTheme {
-        val cryptoList = runBlocking { MockRepo().getCryptoList(10) }.map { it.toDecoratedCrypto() }
+        val cryptoList =
+            runBlocking { MockRepo().getCryptoList(TOP_CRYPTO_LIST_SIZE) }.map { it.toDecoratedCrypto() }
         CryptoListView(cryptoList)
     }
 }

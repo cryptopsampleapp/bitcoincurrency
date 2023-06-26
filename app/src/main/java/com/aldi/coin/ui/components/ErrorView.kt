@@ -18,10 +18,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.aldi.coin.R
 import com.aldi.coin.ui.theme.CustomGray
+import com.aldi.coin.ui.theme.font_size1
+import com.aldi.coin.ui.theme.font_size20
+import com.aldi.coin.ui.theme.perc40
+import com.aldi.coin.ui.theme.size16
+import com.aldi.coin.ui.theme.size20
 import java.util.Locale
 
 @Composable
@@ -31,9 +34,9 @@ fun ErrorView(message: String, action: (() -> Unit)? = null) {
             Text(
                 text = message, modifier = Modifier
                     .align(CenterHorizontally)
-                    .padding(20.dp),
-                fontSize = 20.sp,
-                letterSpacing = 1.sp,
+                    .padding(size20),
+                fontSize = font_size20,
+                letterSpacing = font_size1,
                 color = CustomGray,
                 textAlign = TextAlign.Center
             )
@@ -41,8 +44,8 @@ fun ErrorView(message: String, action: (() -> Unit)? = null) {
                 modifier = Modifier
                     .align(CenterHorizontally)
                     .background(
-                        Color.White.copy(0.4F),
-                        RoundedCornerShape(corner = CornerSize(16.dp))
+                        Color.White.copy(perc40),
+                        RoundedCornerShape(corner = CornerSize(size16))
                     ),
                 onClick = {
                     action?.invoke()
@@ -50,9 +53,9 @@ fun ErrorView(message: String, action: (() -> Unit)? = null) {
             ) {
                 Text(
                     text = stringResource(id = R.string.retry).uppercase(Locale.ROOT),
-                    fontSize = 20.sp,
+                    fontSize = font_size20,
                     fontWeight = FontWeight.Bold,
-                    letterSpacing = 1.sp,
+                    letterSpacing = font_size1,
                     color = CustomGray
                 )
             }

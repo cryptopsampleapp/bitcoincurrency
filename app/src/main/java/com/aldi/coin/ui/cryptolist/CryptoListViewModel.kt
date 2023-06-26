@@ -1,7 +1,7 @@
 package com.aldi.coin.ui.cryptolist
 
-import android.util.Log
 import com.aldi.coin.Constants.ONE_MINUTE
+import com.aldi.coin.Constants.TOP_CRYPTO_LIST_SIZE
 import com.aldi.coin.data.model.DecoratedCrypto
 import com.aldi.coin.data.repository.ApiResponse
 import com.aldi.coin.data.repository.CoinCapRepoImpl
@@ -60,7 +60,7 @@ class CryptoListViewModel @Inject constructor(
     }
 
     private suspend fun getCryptoList() {
-        safeApiCall(coroutineContext) { coinRepo.getCryptoList(10) }.collect { state ->
+        safeApiCall(coroutineContext) { coinRepo.getCryptoList(TOP_CRYPTO_LIST_SIZE) }.collect { state ->
             when (state) {
                 ApiResponse.Loading -> _uiState.value = CryptoListUiState.InProgress
                 is ApiResponse.Success -> _uiState.value =
@@ -73,9 +73,9 @@ class CryptoListViewModel @Inject constructor(
                 is ApiResponse.Error -> {
                     _uiState.value =
                         CryptoListUiState.Error(state.localizedMessage)
-                    Log.d(this::class.simpleName, state.localizedMessage)
                 }
             }
         }
     }
+
 }

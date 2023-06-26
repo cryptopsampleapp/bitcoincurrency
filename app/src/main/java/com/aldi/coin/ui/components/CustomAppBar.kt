@@ -18,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -28,6 +27,9 @@ import com.aldi.coin.Constants.CRYPTO_LIST_TITLE
 import com.aldi.coin.ui.cryptodetail.CryptoDetailScreen
 import com.aldi.coin.ui.cryptolist.CryptoListScreen
 import com.aldi.coin.ui.theme.CustomGray
+import com.aldi.coin.ui.theme.size0
+import com.aldi.coin.ui.theme.size20
+import com.aldi.coin.ui.theme.sizeNeg40
 import java.util.Locale
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -73,12 +75,12 @@ fun CustomAppBar() {
                         color = CustomGray,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier
-                            .padding(20.dp, 0.dp)
-                            .offset(x = if (canPop) (-40).dp else 0.dp)
+                            .padding(size20, size0)
+                            .offset(x = if (canPop) sizeNeg40 else size0)
                     )
                 },
                 navigationIcon = navigationIcon,
-                elevation = 0.dp,
+                elevation = size0,
             )
         },
         content = {

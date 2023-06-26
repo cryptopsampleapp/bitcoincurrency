@@ -7,5 +7,6 @@ object Constants {
     const val CRYPTO_LIST_SCREEN = "cryptoList"
     const val CRYPTO_LIST_TITLE = "coins"
     const val CRYPTO_DETAIL_ARG = "cryptoId"
-    const val ONE_MINUTE : Long = 60000
+    const val ONE_MINUTE: Long = 60000
+    const val TOP_CRYPTO_LIST_SIZE = 10
 }
